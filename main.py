@@ -36,24 +36,34 @@ def answer():
     index = GPTSimpleVectorIndex.load_from_string(documents)
     question = request.form["question"]
     response = index.query(question, response_mode="compact")
-    return redirect(url_for("user_index", result=response.response))
+    return redirect(url_for("index", result=response.response, name=name))
 
 def find_index(username):
     storage_client = storage.Client()
     bucket = storage_client.get_bucket("email-attachment-test")
     prefix = f"{username}/index_results"
 
+    '''
     # List objects with the given prefix, filtering out folders.
     blob_list = [blob for blob in list(bucket.list_blobs(
         prefix=prefix)) if not blob.name.endswith('/')]
 
     index_list = []
+    index_str = ''
     for blob in blob_list:
         print(blob.name)
-        index_list.append(blob.download_as_string().decode())
-    documents = [Document(t) for t in index_list]
+        # index_list.append(blob.download_as_string().decode())
+        index_str += blob.download_as_string().decode()
+    # documents = [Document(t) for t in index_list]
+    print(type(index_str))
 
-    return documents 
+    return index_str
+    '''
+
+    blob = bucket.get_blob(f"{prefix}/index.json")
+    index_str = blob.download_as_string().decode()
+    return index_str
+
 
 def _item_to_value(iterator, item):
     return item[:-1]
