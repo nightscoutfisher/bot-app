@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <head>
-  <title>Fishbot</title>
-  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='fish.ico') }}">
+  <title>Copilot bot</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='copilot_bot.ico') }}">
   <link
     rel="shortcut icon"
-    href="{{ url_for('static', filename='fish.png') }}"
+    href="{{ url_for('static', filename='copilot_bot.png') }}"
   />
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
 </head>
 
 <body>
-  <img src="{{ url_for('static', filename='fish.png') }}" class="icon" />
-  <h3>Fishbot</h3>
+  <img src="{{ url_for('static', filename='copilot_bot.png') }}" class=logo />
+  <h3>Copilot Bot</h3>
   <form action="/answer" method="post">
     <input type="hidden" name="name" value={{data}}>
     <input type="text" name="question" placeholder="Enter a question" required />
@@ -22,7 +22,6 @@
   {% endif %}
 
   <div class="sub_div">
-  <a href="https://mikefisher.substack.com/">Subscribe to Fish Food for Thought</a>
   </div>
 </body>
 
