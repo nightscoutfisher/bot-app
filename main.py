@@ -35,7 +35,7 @@ def answer():
     documents = find_index(name)
     index = GPTSimpleVectorIndex.load_from_string(documents)
     question = request.form["question"]
-    response = index.query(question, response_mode="compact")
+    response = index.query(question, response_mode="default") # compact
     return redirect(url_for("index", result=response.response, name=name))
 
 def find_index(username):
